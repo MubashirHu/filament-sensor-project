@@ -1,43 +1,41 @@
-#include "C:\Users\hussa\Downloads\util.h"
+#include "util.h"
 #include "functions.h"
 #include "GPIO.h"
 #include "ADC.h"
 #include "Interrupt.h"
 #include "PWM.h"
 #include "UART.h"
+#include "IRSensor.h"
+#include "stm32f10x.h" 
 
-char c;
 
 int main(void)
 {
-	//init
+	//Initializations
 	clockInit();
-	// Initialize USART1
-  init_UART1();
+	initializeADC();
+	initIRSensorpins();
 	sysTickInit();
     
-    // Send 'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd', '!' characters
-    USART1_SendChar('H');
-    USART1_SendChar('e');
-    USART1_SendChar('l');
-    USART1_SendChar('l');
-    USART1_SendChar('o');
-    USART1_SendChar(' ');
-    USART1_SendChar('W');
-    USART1_SendChar('o');
-    USART1_SendChar('r');
-    USART1_SendChar('l');
-    USART1_SendChar('d');
-    USART1_SendChar('!');
-    
-    // Receive a character and echo it back
-    c = USART1_ReceiveChar();
-    USART1_SendChar(c);
-    
+	// infinite loop
     while (1)
     {
-        // Your main code here
-		c = USART1_ReceiveChar();
-    USART1_SendChar(c);
+		
+			/*
+    int adc_value = adc_Read();
+		
+		if(adc_value > 0x000 && adc_value <=0x3FF)
+		{
+			// drive LCD display
+			
+		} 
+			*/
+		
+		// Read digital value from PA4
+    uint8_t sensor_data = read_sensor_data();
+		
+    // Do something with sensor_data...
+
+   
     }
 }
