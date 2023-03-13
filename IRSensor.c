@@ -18,3 +18,14 @@ uint8_t read_sensor_data(void) {
         return 0;
     }
 }
+
+void initSolenoidPins(void)
+{
+	// Enable GPIOB clock
+RCC->APB2ENR |= RCC_APB2ENR_IOPBEN;
+
+// Configure PB11 as output with 50 MHz speed
+GPIOB->CRH &= ~(GPIO_CRH_CNF11 | GPIO_CRH_MODE11); // Clear CNF and MODE bits
+GPIOB->CRH |= GPIO_CRH_MODE11_1 | GPIO_CRH_MODE11_0; // Set MODE11 to output mode
+	
+}
