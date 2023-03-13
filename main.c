@@ -15,6 +15,7 @@ int main(void)
 	clockInit();
 	initializeADC();
 	initIRSensorpins();
+	initSolenoidPins();
 	sysTickInit();
     
 	// infinite loop
@@ -35,6 +36,18 @@ int main(void)
     uint8_t sensor_data = read_sensor_data();
 		
     // Do something with sensor_data...
+			
+			if (sensor_data == 0)
+			{
+				// Set PB11 high
+				GPIOB->BSRR |= GPIO_BSRR_BS11;
+			}
+			else if( sensor_data == 1)
+			{
+				// Set PB11 low
+			GPIOB->BRR |= GPIO_BRR_BR11;
+				// do nothing
+			}
 
    
     }
