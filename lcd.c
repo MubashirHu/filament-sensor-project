@@ -6,10 +6,14 @@
 /******************************************************************************/
 
 #include <string.h>
+#include <stdio.h>
 #include "stm32f10x.h"
 #include "lcd.h"
 #include "util.h"
 #include "IOdef.h"
+
+
+
 
 /******************************************************************************/
 //PRIVATE functions
@@ -127,7 +131,6 @@ void dataToLCD(uint8_t data)
 		delay(8000);
 	  GPIOB->BSRR = LCD_DM_DIS; //RS low, E high
 	  delay(80000);
-	
 }
 
 /*
@@ -147,6 +150,14 @@ void stringToLCD(char * message)
 		++message;
 	}
 }
+
+void intToLCD(int number)
+{
+  char buffer[16]; // buffer to hold the number as a string
+  sprintf(buffer, "%d", number); // convert the number to a string
+  stringToLCD(buffer); // send the string to the LCD using the existing stringToLCD function
+}
+
 
 void field2(void)
 {

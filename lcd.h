@@ -16,7 +16,6 @@
 #define LCD_FLD2	0X8C //		; Set DDRAM to 13th position on line 1
 #define LCD_FLD4	0XCC //		; Set DDRAM to 13th position on line 2
 
-
 //Control signal manipulation for LCDs on breadboard PB0:ENA PB1:RS 
 //#define LCD_CM_ENA	0X0002F001 //
 //#define LCD_CM_DIS	0x0003F000 //
@@ -34,6 +33,7 @@
 void initializeLCD(void);
 void commandToLCD(uint8_t data);
 void stringToLCD(char * message);
+void intToLCD(int number);
 void dataToLCD(uint8_t data);
 void field2(void);
 void field4(void);
