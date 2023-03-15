@@ -7,8 +7,10 @@
 #include "UART.h"
 #include "IRSensor.h"
 #include "stm32f10x.h" 
+#include "lcd.h"
+#include "string.h"
 
-
+	
 int main(void)
 {
 	//Initializations
@@ -16,21 +18,25 @@ int main(void)
 	initializeADC();
 	initIRSensorpins();
 	initSolenoidPins();
+	initializeLCD();
 	sysTickInit();
-    
+
+	
 	// infinite loop
     while (1)
     {
-		
-			/*
-    int adc_value = adc_Read();
-		
-		if(adc_value > 0x000 && adc_value <=0x3FF)
-		{
-			// drive LCD display
+		int adc_value = adc_Read();
 			
-		} 
-			*/
+		float temperature = (float)adc_value/4096.0;
+		temperature = temperature * 3300;
+		temperature = temperature - 1250 ;
+		temperature = temperature / 22.5;
+		
+		
+		stringToLCD("Temp: ");
+		intToLCD(temperature);
+		stringToLCD(" Deg C");
+			
 		
 		// Read digital value from PA4
     uint8_t sensor_data = read_sensor_data();
@@ -41,14 +47,19 @@ int main(void)
 			{
 				// Set PB11 high
 				GPIOB->BSRR |= GPIO_BSRR_BS11;
+				commandToLCD(LCD_LN2);
+				stringToLCD("State: Not ready");
 			}
 			else if( sensor_data == 1)
 			{
 				// Set PB11 low
 			GPIOB->BRR |= GPIO_BRR_BR11;
-				// do nothing
+				commandToLCD(LCD_LN2);
+				stringToLCD("State: Ready");
 			}
-
-   
+			delay(1800000);
+			commandToLCD(LCD_CLR);
+			
+ 
     }
 }

@@ -474,6 +474,21 @@
               <FileType>5</FileType>
               <FilePath>.\IRSensor.h</FilePath>
             </File>
+            <File>
+              <FileName>IOdef.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\IOdef.h</FilePath>
+            </File>
+            <File>
+              <FileName>lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>lcd.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lcd.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
