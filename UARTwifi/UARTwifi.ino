@@ -4,8 +4,8 @@
 #define TX_PIN 17 // Tx0 is GPIO1
 #define BAUD_RATE 9600
 
-const char* ssid     = "SASKTEL1394";
-const char* password = "8512b50b22";
+const char* ssid     = "ssid";
+const char* password = "password";
 bool messageSend = false;
 
 WiFiServer server(80);
