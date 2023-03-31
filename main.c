@@ -15,6 +15,7 @@ int main(void)
 {
 	//Initializations
 	clockInit();
+	init_UART1();
 	initializeADC();
 	initIRSensorpins();
 	initSolenoidPins();
@@ -25,6 +26,10 @@ int main(void)
 	// infinite loop
     while (1)
     {
+			
+		char received = USART1_ReceiveChar();
+		USART1_SendChar(received);
+			
 		int adc_value = adc_Read();
 			
 		float temperature = (float)adc_value/4096.0;
@@ -37,29 +42,27 @@ int main(void)
 		intToLCD(temperature);
 		stringToLCD(" Deg C");
 			
-		
 		// Read digital value from PA4
     uint8_t sensor_data = read_sensor_data();
 		
     // Do something with sensor_data...
 			
-			if (sensor_data == 0)
+			if (sensor_data == 0 || received == 'a')
 			{
 				// Set PB11 high
 				GPIOB->BSRR |= GPIO_BSRR_BS11;
 				commandToLCD(LCD_LN2);
 				stringToLCD("State: Not ready");
 			}
-			else if( sensor_data == 1)
+			else if( sensor_data == 1 || received == 'b')
 			{
 				// Set PB11 low
-			GPIOB->BRR |= GPIO_BRR_BR11;
+				GPIOB->BRR |= GPIO_BRR_BR11;
 				commandToLCD(LCD_LN2);
 				stringToLCD("State: Ready");
 			}
 			delay(1800000);
 			commandToLCD(LCD_CLR);
-			
- 
+	 
     }
 }
