@@ -48,15 +48,20 @@ int main(void)
 		
     // Do something with sensor_data...
 			
-			if (sensor_data == 0 || received == 'a')
+			if (sensor_data == 1 && received == 'b')
 			{
 				// Set PB11 high
 				GPIOB->BSRR |= GPIO_BSRR_BS11;
 				LED_ON();
+				delay(1800000);
+				LED_OFF();
+				// Set PB11 low
+				GPIOB->BRR |= GPIO_BRR_BR11;
+				
 				commandToLCD(LCD_LN2);
 				stringToLCD("State: Not ready");
 			}
-			else if( sensor_data == 1 || received == 'b')
+			else if( sensor_data == 0 )
 			{
 				// Set PB11 low
 				GPIOB->BRR |= GPIO_BRR_BR11;

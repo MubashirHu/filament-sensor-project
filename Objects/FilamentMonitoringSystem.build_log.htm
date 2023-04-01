@@ -27,7 +27,43 @@ Project File Date:  04/01/2023
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-".\Objects\FilamentMonitoringSystem.axf" - 0 Error(s), 0 Warning(s).
+main.c(5): warning: In file included from...
+./Interrupt.h(6): warning: no newline at end of file [-Wnewline-eof]
+void EXTI_Init(void);
+                     ^
+main.c(9): warning: In file included from...
+C:/Users/hussa/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.0/Device/Include\stm32f10x.h(18): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+                                               ^
+C:/Users/hussa/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.0/Device/Include\stm32f10x.h(19): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *                code will be based on direct access to peripheral<92>s registers 
+                                                                    ^
+C:/Users/hussa/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.0/Device/Include\stm32f10x.h(26): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *           - Macros to access peripheral<92>s registers hardware
+                                           ^
+main.c(36): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+                float temperature = (float)adc_value/4096.0;
+                      ~~~~~~~~~~~   ~~~~~~~~~~~~~~~~^~~~~~~
+main.c(36): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+                float temperature = (float)adc_value/4096.0;
+                                    ^~~~~~~~~~~~~~~~~
+main.c(39): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+                temperature = temperature / 22.5;
+                            ~ ~~~~~~~~~~~~^~~~~~
+main.c(39): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+                temperature = temperature / 22.5;
+                              ^~~~~~~~~~~ ~
+main.c(43): warning: implicit conversion turns floating-point number into integer: 'float' to 'int' [-Wfloat-conversion]
+                intToLCD(temperature);
+                ~~~~~~~~ ^~~~~~~~~~~
+main.c(34): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+                int adc_value = adc_Read();
+                    ^
+10 warnings generated.
+compiling main.c...
+linking...
+Program Size: Code=10904 RO-data=852 RW-data=0 ZI-data=1632  
+".\Objects\FilamentMonitoringSystem.axf" - 0 Error(s), 10 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -54,11 +90,11 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: Keil::Device:Startup:1.0.0
-      Source file:   Device/Source/ARM/STM32F1xx_OPT.s
-      Source file:   Device/Source/system_stm32f10x.c
-      Source file:   Device/Source/ARM/startup_stm32f10x_md.s
       Include file:  RTE_Driver/Config/RTE_Device.h
-Build Time Elapsed:  00:00:00
+      Source file:   Device/Source/ARM/STM32F1xx_OPT.s
+      Source file:   Device/Source/ARM/startup_stm32f10x_md.s
+      Source file:   Device/Source/system_stm32f10x.c
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
