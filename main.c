@@ -16,6 +16,7 @@ int main(void)
 	//Initializations
 	clockInit();
 	init_UART1();
+	led_IO_init();
 	initializeADC();
 	initIRSensorpins();
 	initSolenoidPins();
@@ -51,6 +52,7 @@ int main(void)
 			{
 				// Set PB11 high
 				GPIOB->BSRR |= GPIO_BSRR_BS11;
+				LED_ON();
 				commandToLCD(LCD_LN2);
 				stringToLCD("State: Not ready");
 			}
@@ -58,6 +60,7 @@ int main(void)
 			{
 				// Set PB11 low
 				GPIOB->BRR |= GPIO_BRR_BR11;
+				LED_OFF();
 				commandToLCD(LCD_LN2);
 				stringToLCD("State: Ready");
 			}

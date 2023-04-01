@@ -5,7 +5,8 @@ void clockInit(void); // Clock initialization providing a default SYSCLK of 24 M
 void led_IO_init (void); // Configuration for PA5 as a push pull output with peripheral clocks for port A and port C turned on
 void sw2led(void); // Read the USER pushbutton and illuminate the Green LED accordingly
 void led_flash(void); // Use the delay routine to toggle the state of the Green LED on PA5
-
+void LED_ON(void);
+void LED_OFF(void);
 
 //GPIOA_BSRR Bit masks for NUCLEO green led on PA5
 

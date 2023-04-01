@@ -146,3 +146,14 @@ void led_flash(void)
 			}
 }
 
+void LED_ON(void)
+{
+	GPIOA->BSRR = NUC_GREEN_ON;
+			delay(1800);
+}
+void LED_OFF(void)
+{
+	GPIOA->BSRR = NUC_GREEN_OFF;
+			delay(1800);
+}
+
