@@ -13,6 +13,40 @@ void delay(uint32_t delay)
 		}
 }
 
+void sleep_us(uint16_t sleep_time_us)
+{
+	if(sleep_time_us <= 1){ sleep_time_us = 2;}	//workaround for inputs of 0 and 1
+	
+	RCC->APB1ENR |= RCC_APB1ENR_TIM2EN; // Enable TIM2 clock
+	TIM2->PSC	= 24 - 1;	// Set counter clk to 1 MHz, function has 1 us resolution
+	TIM2->ARR = sleep_time_us - 1;
+	TIM2->EGR |= TIM_EGR_UG;
+	TIM2->SR &= ~TIM_SR_UIF;
+	TIM2->CR1 |= TIM_CR1_DIR | TIM_CR1_OPM | TIM_CR1_CEN; //Enable down counting and one pulse mode
+	while ((TIM2->SR & TIM_SR_UIF) != TIM_SR_UIF); // wait for completion
+	//TIM2->CR1 &= ~TIM_CR1_CEN;
+//	TIM2->SR = 0;
+//	TIM2->CR1 = 1;
+//	while ((TIM2->SR & 1) == 0);
+//	TIM2->CR1 = 0;
+	
+}	
+
+void sleep_ms(uint16_t sleep_time_ms)
+{
+	if(sleep_time_ms <= 1){ sleep_time_ms = 2;}	//workaround for inputs of 0 and 1
+	
+	RCC->APB1ENR |= RCC_APB1ENR_TIM2EN; // Enable TIM2 clock
+	TIM2->PSC	= 24000 - 1;	// Set counter clk to 1 KHz, function has 1 ms resolution
+	TIM2->ARR = sleep_time_ms - 1;
+	TIM2->EGR |= TIM_EGR_UG;
+	TIM2->SR &= ~TIM_SR_UIF;
+	TIM2->CR1 |= TIM_CR1_DIR | TIM_CR1_OPM | TIM_CR1_CEN;
+	while ((TIM2->SR & TIM_SR_UIF) != TIM_SR_UIF);
+	//TIM2->CR1 &= ~TIM_CR1_CEN;
+	
+}	
+
 //**************************** Clock Configuration ************************************************************
 void clockInit(void)
 {

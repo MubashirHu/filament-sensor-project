@@ -7,27 +7,34 @@
 #include "UART.h"
 #include "IRSensor.h"
 #include "stm32f10x.h" 
-#include "lcd.h"
+#include "i2c.h"
+#include "i2c_lcd_driver.h"
+//#include "lcd.h"
 #include "string.h"
 
 	
 int main(void)
 {
+	uint8_t my_lcd_addr = 0x27;
+	char test_m1[17]="NUCLEO STM32F103";
+	char test_m2[17]="  I2C LCD TEST  ";
+	
 	//Initializations
 	clockInit();
 	init_UART1();
 	initializeADC();
 	initIRSensorpins();
 	initSolenoidPins();
-	initializeLCD();
+	i2c_init();		// Set up the clocks, IO ports, and init I2C2 in standard mode
+	lcd_init(my_lcd_addr);		// Send the initialization commands to the i2c LCD
 	sysTickInit();
 
-	
 	// infinite loop
     while (1)
     {
 			
-		char received = USART1_ReceiveChar();
+		//char received = USART1_ReceiveChar(); // blocking
+		char received = 'a';
 		USART1_SendChar(received);
 			
 		int adc_value = adc_Read();
@@ -37,10 +44,10 @@ int main(void)
 		temperature = temperature - 1250 ;
 		temperature = temperature / 22.5;
 		
-		
-		stringToLCD("Temp: ");
+		lcd_write_cmd(my_lcd_addr, LCD_LN1);	// Position cursor at beginning of line 1
+		stringToLCD(my_lcd_addr, "Temp: ");
 		intToLCD(temperature);
-		stringToLCD(" Deg C");
+		stringToLCD(my_lcd_addr, " Deg C");
 			
 		// Read digital value from PA4
     uint8_t sensor_data = read_sensor_data();
@@ -51,18 +58,21 @@ int main(void)
 			{
 				// Set PB11 high
 				GPIOB->BSRR |= GPIO_BSRR_BS11;
-				commandToLCD(LCD_LN2);
-				stringToLCD("State: Not ready");
+				lcd_write_cmd(my_lcd_addr, LCD_LN2);	// Position cursor at beginning of line 2
+				stringToLCD(my_lcd_addr,"State: Not ready");
+				
 			}
 			else if( sensor_data == 1 || received == 'b')
 			{
 				// Set PB11 low
 				GPIOB->BRR |= GPIO_BRR_BR11;
-				commandToLCD(LCD_LN2);
-				stringToLCD("State: Ready");
+				lcd_write_cmd(my_lcd_addr, LCD_LN2);	// Position cursor at beginning of line 2
+				stringToLCD(my_lcd_addr,"  State: Ready");
 			}
-			delay(1800000);
-			commandToLCD(LCD_CLR);
-	 
+			sleep_ms(750);
+			
     }
+		
+		
+		
 }
