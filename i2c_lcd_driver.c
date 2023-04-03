@@ -181,9 +181,9 @@ void lcd_write_dat(uint8_t addr, uint8_t data)
 //	}
 //}
 
-void intToLCD(int number)
+void intToLCD(uint8_t addr, int number)
 {
-	uint8_t my_lcd_addr = 0x27;
+	uint8_t my_lcd_addr = addr;
   char buffer[16]; // buffer to hold the number as a string
   sprintf(buffer, "%d", number); // convert the number to a string
   stringToLCD(my_lcd_addr,buffer);			// Output a string using a char array

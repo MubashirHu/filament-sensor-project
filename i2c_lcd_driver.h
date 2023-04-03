@@ -1,5 +1,5 @@
 #include "stm32f10x.h"
-void intToLCD(int number);
+void intToLCD(uint8_t addr, int number);
 void lcd_i2c_write(uint8_t addr, uint8_t data);
 void lcd_init(uint8_t addr);
 void lcd_strobe(uint8_t addr, uint8_t data);
