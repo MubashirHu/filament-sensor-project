@@ -27,3 +27,15 @@ uint16_t adc_Read(void)
 		return ADC1->DR;
 
 }
+
+float readTemp(void)
+{
+		int adc_value = adc_Read();
+		float temperature = (float)adc_value/4096.0;
+		temperature = temperature * 3300;
+		temperature = temperature - 1250 ;
+		temperature = temperature / 22.5;
+		temperature = temperature *3.85;
+	
+		return temperature;
+}

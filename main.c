@@ -15,7 +15,8 @@
 	
 int main(void)
 {
-	uint8_t my_lcd_addr = 0x3f;
+	uint8_t my_lcd_addr = 0x3f, IR_data_curr_state, IR_data_prev_state;
+	float temperature;
 	//Initializations
 	clockInit();
 	init_UART1();
@@ -29,47 +30,38 @@ int main(void)
 	// infinite loop
     while (1)
     {
-			
-		//char received = USART1_ReceiveChar(); // blocking
-		char received = 'a';
-		USART1_SendChar(received);
-			
-		int adc_value = adc_Read();
-			
-		float temperature = (float)adc_value/4096.0;
-		temperature = temperature * 3300;
-		temperature = temperature - 1250 ;
-		temperature = temperature / 22.5;
-			
+		temperature = readTemp();
+		
 		lcd_write_cmd(my_lcd_addr, LCD_LN1);	// Position cursor at beginning of line 1
 		stringToLCD(my_lcd_addr, "Temp: ");
-		intToLCD(my_lcd_addr, temperature);
-		stringToLCD(my_lcd_addr, " Deg C");
+		intToLCD(my_lcd_addr, temperature); 
+		stringToLCD(my_lcd_addr, " Deg C  ");
 			
-		// Read digital value from PA4
-    uint8_t sensor_data = read_sensor_data();
+    IR_data_curr_state = read_IR();
 		
-    // Do something with sensor_data...
-			
-			if (sensor_data == 0 || received == 'a')
+			if (IR_data_curr_state == 1 && IR_data_curr_state != IR_data_prev_state)
 			{
-				// Set PB11 high
+				delay(1800000*5);
 				GPIOB->BSRR |= GPIO_BSRR_BS11;
+				delay(1800000);
+				GPIOB->BRR |= GPIO_BRR_BR11;
+				
 				lcd_write_cmd(my_lcd_addr, LCD_LN2);	// Position cursor at beginning of line 2
-				stringToLCD(my_lcd_addr,"State: Not ready");
+				stringToLCD(my_lcd_addr,"   need PLA...");
+				
+				IR_data_prev_state = IR_data_curr_state;
+				
 				
 			}
-			else if( sensor_data == 1 || received == 'b')
+			else if( IR_data_curr_state == 0 && IR_data_curr_state != IR_data_prev_state)
 			{
 				// Set PB11 low
 				GPIOB->BRR |= GPIO_BRR_BR11;
 				lcd_write_cmd(my_lcd_addr, LCD_LN2);	// Position cursor at beginning of line 2
-				stringToLCD(my_lcd_addr,"  State: Ready");
+				stringToLCD(my_lcd_addr,"   PLA Ready!  ");
+				IR_data_prev_state = IR_data_curr_state;
 			}
 			sleep_ms(750);
-			
     }
-		
-		
-		
 }
+

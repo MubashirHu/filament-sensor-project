@@ -10,7 +10,7 @@ void initIRSensorpins(void)
     IR_SENSOR_PORT->CRL |= GPIO_CRL_CNF4_0;
 }
 
-uint8_t read_sensor_data(void) {
+uint8_t read_IR(void) {
     // Read digital value from PA4
     if (GPIOA->IDR & GPIO_IDR_IDR4) {
         return 1;

@@ -7,6 +7,6 @@
 
 void initIRSensorpins(void);
 
-uint8_t read_sensor_data(void);
+uint8_t read_IR(void);
 
 void initSolenoidPins(void);
