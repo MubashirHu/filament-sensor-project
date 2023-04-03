@@ -22,7 +22,7 @@ Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
 C:\Users\hussa\OneDrive\Documents\Workspace\ENEL 351\FilamentMonitoringSystem\FilamentMonitoringSystem.uvprojx
-Project File Date:  03/30/2023
+Project File Date:  04/03/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
@@ -41,35 +41,29 @@ C:/Users/hussa/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.0/Device/Include\s
 C:/Users/hussa/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.0/Device/Include\stm32f10x.h(26): warning: invalid UTF-8 in comment [-Winvalid-utf8]
   *           - Macros to access peripheral<92>s registers hardware
                                            ^
-main.c(42): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+main.c(39): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
                 float temperature = (float)adc_value/4096.0;
                       ~~~~~~~~~~~   ~~~~~~~~~~~~~~~~^~~~~~~
-main.c(42): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+main.c(39): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
                 float temperature = (float)adc_value/4096.0;
                                     ^~~~~~~~~~~~~~~~~
-main.c(45): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+main.c(42): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
                 temperature = temperature / 22.5;
                             ~ ~~~~~~~~~~~~^~~~~~
-main.c(45): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+main.c(42): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
                 temperature = temperature / 22.5;
                               ^~~~~~~~~~~ ~
-main.c(49): warning: implicit conversion turns floating-point number into integer: 'float' to 'int' [-Wfloat-conversion]
-                intToLCD(temperature);
-                ~~~~~~~~ ^~~~~~~~~~~
-main.c(40): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+main.c(46): warning: implicit conversion turns floating-point number into integer: 'float' to 'int' [-Wfloat-conversion]
+                intToLCD(my_lcd_addr, temperature);
+                ~~~~~~~~              ^~~~~~~~~~~
+main.c(37): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
                 int adc_value = adc_Read();
                     ^
-main.c(20): warning: unused variable 'test_m2' [-Wunused-variable]
-        char test_m2[17]="  I2C LCD TEST  ";
-             ^
-main.c(19): warning: unused variable 'test_m1' [-Wunused-variable]
-        char test_m1[17]="NUCLEO STM32F103";
-             ^
-12 warnings generated.
+10 warnings generated.
 compiling main.c...
 linking...
-Program Size: Code=11788 RO-data=888 RW-data=0 ZI-data=1632  
-".\Objects\FilamentMonitoringSystem.axf" - 0 Error(s), 12 Warning(s).
+Program Size: Code=11528 RO-data=856 RW-data=0 ZI-data=1632  
+".\Objects\FilamentMonitoringSystem.axf" - 0 Error(s), 10 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -96,8 +90,8 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: Keil::Device:Startup:1.0.0
-      Source file:   Device/Source/system_stm32f10x.c
       Source file:   Device/Source/ARM/startup_stm32f10x_md.s
+      Source file:   Device/Source/system_stm32f10x.c
       Include file:  RTE_Driver/Config/RTE_Device.h
       Source file:   Device/Source/ARM/STM32F1xx_OPT.s
 Build Time Elapsed:  00:00:00

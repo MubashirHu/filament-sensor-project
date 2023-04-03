@@ -15,10 +15,7 @@
 	
 int main(void)
 {
-	uint8_t my_lcd_addr = 0x27;
-	char test_m1[17]="NUCLEO STM32F103";
-	char test_m2[17]="  I2C LCD TEST  ";
-	
+	uint8_t my_lcd_addr = 0x3f;
 	//Initializations
 	clockInit();
 	init_UART1();
@@ -43,10 +40,10 @@ int main(void)
 		temperature = temperature * 3300;
 		temperature = temperature - 1250 ;
 		temperature = temperature / 22.5;
-		
+			
 		lcd_write_cmd(my_lcd_addr, LCD_LN1);	// Position cursor at beginning of line 1
 		stringToLCD(my_lcd_addr, "Temp: ");
-		intToLCD(temperature);
+		intToLCD(my_lcd_addr, temperature);
 		stringToLCD(my_lcd_addr, " Deg C");
 			
 		// Read digital value from PA4
