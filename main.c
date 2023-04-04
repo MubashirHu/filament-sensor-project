@@ -11,7 +11,7 @@
 #include "i2c_lcd_driver.h"
 //#include "lcd.h"
 #include "string.h"
-
+ 
 	
 int main(void)
 {
@@ -25,6 +25,7 @@ int main(void)
 	initSolenoidPins();
 	i2c_init();		// Set up the clocks, IO ports, and init I2C2 in standard mode
 	lcd_init(my_lcd_addr);		// Send the initialization commands to the i2c LCD
+	tim3GpioSetup();
 	sysTickInit();
 
 	// infinite loop
@@ -50,6 +51,7 @@ int main(void)
 				stringToLCD(my_lcd_addr,"   need PLA...");
 				
 				IR_data_prev_state = IR_data_curr_state;
+				updateDutyCycle(50);
 				
 				
 			}
@@ -60,6 +62,7 @@ int main(void)
 				lcd_write_cmd(my_lcd_addr, LCD_LN2);	// Position cursor at beginning of line 2
 				stringToLCD(my_lcd_addr,"   PLA Ready!  ");
 				IR_data_prev_state = IR_data_curr_state;
+				updateDutyCycle(0);
 			}
 			sleep_ms(750);
     }
