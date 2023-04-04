@@ -9,7 +9,7 @@ void tim3GpioSetup(void)
 	
 	// turn on PORT A6 output
 	// Configure PA6 as GPIO ( Write 1011b into the configuration and mode bits )
-		GPIOA->CRL &= 0x0B0f0000;
+		GPIOA->CRL &= 0x0B0f000f;
     GPIOA->CRL |= GPIO_CRL_CNF6_1 | GPIO_CRL_MODE6;
 	
 TIM3->CR1 |= TIM_CR1_CEN; // Enable Timer3

@@ -944,13 +944,13 @@ Image Symbol Table
     tenpwrs_x                                0x080030dc   Data          60  bigflt0.o(.constdata)
     .constdata                               0x080030dc   Section      148  bigflt0.o(.constdata)
     tenpwrs_i                                0x08003118   Data          64  bigflt0.o(.constdata)
-    .L.str.3                                 0x08003170   Data          16  main.o(.rodata.str1.1)
+    .L.str.1                                 0x08003170   Data          10  main.o(.rodata.str1.1)
     [Anonymous Symbol]                       0x08003170   Section        0  main.o(.rodata.str1.1)
-    .L.str.1                                 0x08003180   Data           9  main.o(.rodata.str1.1)
-    .L.str                                   0x08003189   Data           7  main.o(.rodata.str1.1)
-    .L.str.2                                 0x08003190   Data          15  main.o(.rodata.str1.1)
-    .L.str                                   0x0800319f   Data           3  i2c_lcd_driver.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x0800319f   Section        0  i2c_lcd_driver.o(.rodata.str1.1)
+    .L.str.3                                 0x0800317a   Data          16  main.o(.rodata.str1.1)
+    .L.str                                   0x0800318a   Data           7  main.o(.rodata.str1.1)
+    .L.str.2                                 0x08003191   Data          15  main.o(.rodata.str1.1)
+    .L.str                                   0x080031a0   Data           3  i2c_lcd_driver.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x080031a0   Section        0  i2c_lcd_driver.o(.rodata.str1.1)
     locale$$data                             0x080031b4   Section       28  lc_numeric_c.o(locale$$data)
     __lcnum_c_name                           0x080031b8   Data           2  lc_numeric_c.o(locale$$data)
     __lcnum_c_start                          0x080031c0   Data           0  lc_numeric_c.o(locale$$data)
@@ -1477,9 +1477,9 @@ Memory Map of the image
     0x080030b5   0x080030b5   0x00000026   Data   RO          381    .constdata          c_w.l(_printf_fp_hex.o)
     0x080030db   0x080030db   0x00000001   PAD
     0x080030dc   0x080030dc   0x00000094   Data   RO          404    .constdata          c_w.l(bigflt0.o)
-    0x08003170   0x08003170   0x0000002f   Data   RO            4    .rodata.str1.1      main.o
-    0x0800319f   0x0800319f   0x00000003   Data   RO          146    .rodata.str1.1      i2c_lcd_driver.o
-    0x080031a2   0x080031a2   0x00000002   PAD
+    0x08003170   0x08003170   0x00000030   Data   RO            4    .rodata.str1.1      main.o
+    0x080031a0   0x080031a0   0x00000003   Data   RO          146    .rodata.str1.1      i2c_lcd_driver.o
+    0x080031a3   0x080031a3   0x00000001   PAD
     0x080031a4   0x080031a4   0x00000010   Data   RO          590    Region$$Table       anon$$obj.o
     0x080031b4   0x080031b4   0x0000001c   Data   RO          430    locale$$data        c_w.l(lc_numeric_c.o)
     0x080031d0   0x080031d0   0x00000110   Data   RO          452    locale$$data        c_w.l(lc_ctype_c.o)
@@ -1511,7 +1511,7 @@ Image component sizes
        522          0          3          0          0       2357   i2c_lcd_driver.o
         40          0          0          0          0       1204   interrupt.o
        128          0          0          0          0       1335   irsensor.o
-       346          0         47          0          0       1417   main.o
+       346          0         48          0          0       1417   main.o
        206          0          0          0          0       2151   pwm.o
         64         26        236          0       1536        872   startup_stm32f10x_md.o
        400          0          0          0          0       2897   system_stm32f10x.o
@@ -1521,7 +1521,7 @@ Image component sizes
     ----------------------------------------------------------------------
       3096         26        304          0       1536      21794   Object Totals
          0          0         16          0          0          0   (incl. Generated)
-        30          0          2          0          0          0   (incl. Padding)
+        30          0          1          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 

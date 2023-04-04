@@ -36,7 +36,7 @@ int main(void)
 		lcd_write_cmd(my_lcd_addr, LCD_LN1);	// Position cursor at beginning of line 1
 		stringToLCD(my_lcd_addr, "Temp: ");
 		intToLCD(my_lcd_addr, temperature); 
-		stringToLCD(my_lcd_addr, " Deg C  ");
+		stringToLCD(my_lcd_addr, " Deg C   ");
 			
     IR_data_curr_state = read_IR();
 		
