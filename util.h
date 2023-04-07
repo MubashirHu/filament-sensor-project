@@ -1,5 +1,6 @@
 #include <stdint.h>
 
+void sysTickInit(void);
 void delay(uint32_t delay); // A delay loop which blocks while a value is decremented to 0
 void sleep_ms(uint16_t sleep_time);// A timer based delay loop. Resolution of 1 ms assumes SYSCLK = 24 Mhz
 void sleep_us(uint16_t sleep_time_us);// A timer based delay loop.  Resolution of 1 us assumes SYSCLK = 24 Mhz

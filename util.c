@@ -13,6 +13,15 @@ void delay(uint32_t delay)
 		}
 }
 
+
+void sysTickInit(void)
+{
+	
+	SysTick->LOAD |= 0xB71B00;
+	SysTick->CTRL |= SysTick_CTRL_CLKSOURCE | SysTick_CTRL_ENABLE;
+	
+}
+
 void sleep_us(uint16_t sleep_time_us)
 {
 	if(sleep_time_us <= 1){ sleep_time_us = 2;}	//workaround for inputs of 0 and 1
