@@ -405,36 +405,6 @@
               <FilePath>.\ADC.h</FilePath>
             </File>
             <File>
-              <FileName>functions.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\functions.c</FilePath>
-            </File>
-            <File>
-              <FileName>functions.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\functions.h</FilePath>
-            </File>
-            <File>
-              <FileName>GPIO.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\GPIO.c</FilePath>
-            </File>
-            <File>
-              <FileName>GPIO.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\GPIO.h</FilePath>
-            </File>
-            <File>
-              <FileName>Interrupt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Interrupt.c</FilePath>
-            </File>
-            <File>
-              <FileName>Interrupt.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Interrupt.h</FilePath>
-            </File>
-            <File>
               <FileName>PWM.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\PWM.c</FilePath>

@@ -56,7 +56,7 @@ int main(void)
 					lcd_write_cmd(my_lcd_addr, LCD_LN2);	// Position cursor at beginning of line 2
 					stringToLCD(my_lcd_addr,"   PLA Ready!  ");
 					IR_data_prev_state = IR_data_curr_state;
-					updateDutyCycle(0);
+					updateDutyCycle(0); 
 				}
 				sleep_ms(750);
     }
