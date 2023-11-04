@@ -1,5 +1,5 @@
 #include <stm32f10x.h>
-#include "i2c.h"
+#include "../headers/i2c.h"
 
 /* This source file is derived from example code at nicerland.com */
 

@@ -1,4 +1,4 @@
-#include "PWM.h"
+#include "../headers/PWM.h"
 #include "stm32f10x.h"
 
 void tim3GpioSetup(void)

@@ -1,9 +1,9 @@
 #include <string.h>
 #include "stm32f10x.h"
-#include "i2c_lcd_driver.h"
-#include "i2c.h"
-#include "util.h"
-#include "IOdef.h"
+#include "../headers/i2c_lcd_driver.h"
+#include "../headers/i2c.h"
+#include "../headers/util.h"
+#include "../headers/IOdef.h"
 #include <stdio.h>
 
 //void i2c_sendbyte(uint8_t addr, uint8_t data);

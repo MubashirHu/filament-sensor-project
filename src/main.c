@@ -1,17 +1,18 @@
-#include "util.h"
-#include "ADC.h"
-#include "PWM.h"
-#include "UART.h"
-#include "IRSensor.h"
-#include "stm32f10x.h" 
-#include "i2c.h"
-#include "i2c_lcd_driver.h"
+#include "../headers/util.h"
+#include "../headers/ADC.h"
+#include "../headers/PWM.h"
+#include "../headers/UART.h"
+#include "../headers/IRSensor.h" 
+#include "../headers/i2c.h"
+#include "../headers/i2c_lcd_driver.h"
 #include "string.h"
+#include "stm32f10x.h"
  
 int main(void)
 {
 	uint8_t my_lcd_addr = 0x3f, IR_data_curr_state, IR_data_prev_state;
 	float temperature;
+	
 	
 	//Initializations
 	clockInit();
